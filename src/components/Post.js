@@ -6,7 +6,9 @@ import moment from 'moment';
 const Post = ({ id, title, content, user, createdAt, stars, comments }) => {
   const postRef = firestore.doc(`posts/${id}`);
   const remove = () => postRef.delete();
-
+  const star = () => {
+    postRef.update({ stars: stars + 1 });
+  };
   return (
     <article className="Post">
       <div className="Post--content">
@@ -16,7 +18,7 @@ const Post = ({ id, title, content, user, createdAt, stars, comments }) => {
       <div className="Post--meta">
         <div>
           <p>
-            <span role="img" aria-label="star">
+            <span role="img" aria-label="star" onClick={() => star()}>
               ⭐️
             </span>
             {stars}
