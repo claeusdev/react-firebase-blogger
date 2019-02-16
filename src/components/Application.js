@@ -4,13 +4,17 @@ import { firestore } from '../firebase';
 
 import Posts from './Posts';
 import { collectIdsAndDocs } from '../util';
+import Authentication from './Authentication';
+import { auth } from '../firebase';
 
 class Application extends Component {
   state = {
-    posts: []
+    posts: [],
+    user: null
   };
 
-  unsubscribe = null;
+  unsubscribeFromFirestore = null;
+  unsubscribeFromAuth = null;
 
   componentDidMount = async () => {
     // .onSnapshot returns a function that is passed to unsubscribe
@@ -19,18 +23,24 @@ class Application extends Component {
       const posts = snapshot.docs.map(collectIdsAndDocs);
       this.setState({ posts });
     });
+
+    this.unsubscribeFromAuth = auth;
+    auth.onAuthStateChanged((user) => {
+      this.setState({ user });
+    });
   };
 
   componentWillUnmount() {
-    this.unsubscribe();
+    this.unsubscribeFromFirestore();
   }
 
   render() {
-    const { posts } = this.state;
+    const { posts, user } = this.state;
 
     return (
       <main className="Application">
         <h1>Think Piece</h1>
+        <Authentication user={user} />
         <Posts posts={posts} />
       </main>
     );
