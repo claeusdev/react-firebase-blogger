@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { auth } from '../firebase';
+import { auth, createUserProfileDocument } from '../firebase';
 class SignUp extends Component {
   state = { displayName: '', email: '', password: '' };
 
@@ -19,6 +19,7 @@ class SignUp extends Component {
         email,
         password
       );
+      createUserProfileDocument(user, { displayName });
       user.updateProfile({ displayName });
     } catch (error) {
       console.error(error);
