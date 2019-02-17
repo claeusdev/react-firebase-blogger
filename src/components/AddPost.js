@@ -12,7 +12,7 @@ class AddPost extends Component {
     event.preventDefault();
 
     const { title, content } = this.state;
-    const { uid, displayName, email, photoURL } = auth.currentUser;
+    const { uid, displayName, email, photoURL } = auth.currentUser || {};
 
     const post = {
       title,
