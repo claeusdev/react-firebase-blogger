@@ -4,12 +4,12 @@ import 'firebase/auth';
 import 'firebase/storage';
 // Initialize Firebase
 const config = {
-  apiKey: 'AIzaSyAgbGyEllU-3Y3QWh9e9_3c4PIbi43ojEc',
-  authDomain: 'bloggg-424db.firebaseapp.com',
-  databaseURL: 'https://bloggg-424db.firebaseio.com',
-  projectId: 'bloggg-424db',
-  storageBucket: 'bloggg-424db.appspot.com',
-  messagingSenderId: '723248875779'
+  apiKey: '',
+  authDomain: '',
+  databaseURL: '',
+  projectId: '',
+  storageBucket: '',
+  messagingSenderId: ''
 };
 firebase.initializeApp(config);
 
